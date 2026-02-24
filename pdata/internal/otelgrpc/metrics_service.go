@@ -8,10 +8,11 @@ import (
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/reflection"
 	"google.golang.org/grpc/status"
 
 	"go.opentelemetry.io/collector/pdata/internal"
+	_ "go.virtana.io/vdc/proto/collector/metrics/v1"
+	_ "go.virtana.io/vdc/proto/resource/v1"
 )
 
 // MetricsServiceClient is the client API for MetricsService service.
@@ -52,7 +53,6 @@ func (*UnimplementedMetricsServiceServer) Export(context.Context, *internal.Expo
 
 func RegisterMetricsServiceServer(s *grpc.Server, srv MetricsServiceServer) {
 	s.RegisterService(&metricsServiceServiceDesc, srv)
-	reflection.Register(s)
 }
 
 // Context cannot be the first parameter of the function because gRPC definition.

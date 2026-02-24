@@ -1,7 +1,7 @@
 
 import re
 
-commit_hash = "800d6ab434ff"
+commit_hash = "5b3bd3f3c"
 fork_repo = "github.com/angurajponnusamy/opentelemetry-collector"
 
 replaces = [
@@ -86,29 +86,34 @@ replaces = [
     "go.opentelemetry.io/collector/service => ../../service",
     "go.opentelemetry.io/collector/service/hostcapabilities => ../../service/hostcapabilities",
     "go.opentelemetry.io/collector/service/telemetry/telemetrytest => ../../service/telemetry/telemetrytest",
+    "go.virtana.io/vdc => ../../protocols/virtana/vdc",
 ]
 
 config = """dist:
-  name: virtana-otelcol
-  description: Virtana Custom OTLP Collector
+  name: datasender
+  description: Virtana Data Sender
   output_path: ./dist
-  version: 1.0.0
+  version: 0.1.0
 
 exporters:
-  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.145.0
-  - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.145.0
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.0.1
+  - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.0.1
 
 receivers:
-  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.145.0
+  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.0.1
 
 processors:
-  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.145.0
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.0.1
 
 replaces:
 """
 
 for line in replaces:
     module_path = line.split(" => ")[0]
+    if "go.virtana.io/vdc" in module_path:
+        config += f"  - {module_path} => {fork_repo}/protocols/virtana/vdc {commit_hash}\n"
+        continue
+
     submodule = module_path.replace("go.opentelemetry.io/collector", "")
     if submodule.startswith("/"):
         submodule = submodule[1:]
