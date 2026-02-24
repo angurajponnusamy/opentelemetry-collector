@@ -1,7 +1,7 @@
 
 import re
 
-commit_hash = "5b3bd3f3c"
+commit_hash = "e6b541eb0"
 fork_repo = "github.com/angurajponnusamy/opentelemetry-collector"
 
 replaces = [

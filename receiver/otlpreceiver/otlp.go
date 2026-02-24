@@ -30,6 +30,10 @@ import (
 	"go.opentelemetry.io/collector/receiver/otlpreceiver/internal/profiles"
 	"go.opentelemetry.io/collector/receiver/otlpreceiver/internal/trace"
 	"go.opentelemetry.io/collector/receiver/receiverhelper"
+	_ "go.virtana.io/vdc/proto/collector/logs/v1"
+	_ "go.virtana.io/vdc/proto/collector/traces/v1"
+	_ "go.virtana.io/vdc/proto/logs/v1"
+	_ "go.virtana.io/vdc/proto/traces/v1"
 )
 
 // otlpReceiver is the type that exposes Trace and Metrics reception.

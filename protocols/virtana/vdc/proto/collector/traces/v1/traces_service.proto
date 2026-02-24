@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package virtana.vdc.proto.collector.traces.v1;
+
+import "virtana/vdc/proto/traces/v1/traces.proto";
+
+option csharp_namespace = "Virtana.Vdc.Proto.Collector.Traces.V1";
+option java_multiple_files = true;
+option java_package = "io.virtana.vdc.proto.collector.traces.v1";
+option java_outer_classname = "TracesServiceProto";
+option go_package = "go.virtana.io/vdc/proto/collector/traces/v1";
+
+// Service that can be used to push traces between one Application
+// instrumented with OpenTelemetry and a collector, or between a collector and a
+// central collector.
+service TraceService {
+  rpc Export(ExportTraceServiceRequest) returns (ExportTraceServiceResponse) {}
+}
+
+message ExportTraceServiceRequest {
+  // An array of ResourceSpans.
+  repeated virtana.vdc.proto.traces.v1.ResourceSpans resource_spans = 1;
+}
+
+message ExportTraceServiceResponse {
+  // The details of a partially successful export request.
+  ExportTracePartialSuccess partial_success = 1;
+}
+
+message ExportTracePartialSuccess {
+  // The number of rejected spans.
+  int64 rejected_spans = 1;
+
+  // A developer-facing human-readable message in English.
+  string error_message = 2;
+}
