@@ -18,9 +18,9 @@ import (
 // SpanEvent is a time-stamped annotation of the span, consisting of user-supplied
 // text description and key-value pairs. See OTLP for event definition.
 type SpanEvent struct {
+	TimeUnixNano           uint64
 	Name                   string
 	Attributes             []KeyValue
-	TimeUnixNano           uint64
 	DroppedAttributesCount uint32
 }
 
@@ -317,7 +317,7 @@ func GenTestSpanEvent() *SpanEvent {
 	orig := NewSpanEvent()
 	orig.TimeUnixNano = uint64(13)
 	orig.Name = "test_name"
-	orig.Attributes = []KeyValue{{}, *GenTestKeyValue()}
+	orig.Attributes = []KeyValue{KeyValue{}, *GenTestKeyValue()}
 	orig.DroppedAttributesCount = uint32(13)
 	return orig
 }

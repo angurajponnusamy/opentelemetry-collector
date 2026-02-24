@@ -17,10 +17,10 @@ import (
 // ResourceMetrics is a collection of metrics from a Resource.
 type ResourceMetrics struct {
 	Resource               Resource
-	Meta                   MetaData
-	SchemaUrl              string
 	ScopeMetrics           []*ScopeMetrics
+	SchemaUrl              string
 	DeprecatedScopeMetrics []*ScopeMetrics
+	Meta                   MetaData
 }
 
 var (
@@ -373,9 +373,9 @@ func (orig *ResourceMetrics) UnmarshalProto(buf []byte) error {
 func GenTestResourceMetrics() *ResourceMetrics {
 	orig := NewResourceMetrics()
 	orig.Resource = *GenTestResource()
-	orig.ScopeMetrics = []*ScopeMetrics{{}, GenTestScopeMetrics()}
+	orig.ScopeMetrics = []*ScopeMetrics{&ScopeMetrics{}, GenTestScopeMetrics()}
 	orig.SchemaUrl = "test_schemaurl"
-	orig.DeprecatedScopeMetrics = []*ScopeMetrics{{}, GenTestScopeMetrics()}
+	orig.DeprecatedScopeMetrics = []*ScopeMetrics{&ScopeMetrics{}, GenTestScopeMetrics()}
 	orig.Meta = *GenTestMetaData()
 	return orig
 }

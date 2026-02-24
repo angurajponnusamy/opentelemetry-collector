@@ -16,9 +16,9 @@ import (
 
 // ScopeLogs is a collection of logs from a LibraryInstrumentation.
 type ScopeLogs struct {
-	SchemaUrl  string
-	LogRecords []*LogRecord
 	Scope      InstrumentationScope
+	LogRecords []*LogRecord
+	SchemaUrl  string
 }
 
 var (
@@ -290,7 +290,7 @@ func (orig *ScopeLogs) UnmarshalProto(buf []byte) error {
 func GenTestScopeLogs() *ScopeLogs {
 	orig := NewScopeLogs()
 	orig.Scope = *GenTestInstrumentationScope()
-	orig.LogRecords = []*LogRecord{{}, GenTestLogRecord()}
+	orig.LogRecords = []*LogRecord{&LogRecord{}, GenTestLogRecord()}
 	orig.SchemaUrl = "test_schemaurl"
 	return orig
 }

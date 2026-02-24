@@ -66,9 +66,9 @@ func (m *RequestContext) GetUnix() *UnixAddr {
 }
 
 type RequestContext struct {
-	ClientAddress  any
 	SpanContext    *SpanContext
 	ClientMetadata []KeyValue
+	ClientAddress  any
 }
 
 var (
@@ -626,7 +626,7 @@ func (orig *RequestContext) UnmarshalProto(buf []byte) error {
 func GenTestRequestContext() *RequestContext {
 	orig := NewRequestContext()
 	orig.SpanContext = GenTestSpanContext()
-	orig.ClientMetadata = []KeyValue{{}, *GenTestKeyValue()}
+	orig.ClientMetadata = []KeyValue{KeyValue{}, *GenTestKeyValue()}
 	orig.ClientAddress = &RequestContext_IP{IP: GenTestIPAddr()}
 	return orig
 }

@@ -47,11 +47,11 @@ func (m *NumberDataPoint) GetAsInt() int64 {
 
 // NumberDataPoint is a single data point in a timeseries that describes the time-varying value of a number metric.
 type NumberDataPoint struct {
-	Value             any
 	Attributes        []KeyValue
-	Exemplars         []Exemplar
 	StartTimeUnixNano uint64
 	TimeUnixNano      uint64
+	Value             any
+	Exemplars         []Exemplar
 	Flags             uint32
 }
 
@@ -531,11 +531,11 @@ func (orig *NumberDataPoint) UnmarshalProto(buf []byte) error {
 
 func GenTestNumberDataPoint() *NumberDataPoint {
 	orig := NewNumberDataPoint()
-	orig.Attributes = []KeyValue{{}, *GenTestKeyValue()}
+	orig.Attributes = []KeyValue{KeyValue{}, *GenTestKeyValue()}
 	orig.StartTimeUnixNano = uint64(13)
 	orig.TimeUnixNano = uint64(13)
 	orig.Value = &NumberDataPoint_AsDouble{AsDouble: float64(3.1415926)}
-	orig.Exemplars = []Exemplar{{}, *GenTestExemplar()}
+	orig.Exemplars = []Exemplar{Exemplar{}, *GenTestExemplar()}
 	orig.Flags = uint32(13)
 	return orig
 }

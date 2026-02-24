@@ -50,9 +50,9 @@ func (m *Exemplar) GetAsInt() int64 {
 // Exemplars also hold information about the environment when the measurement was recorded,
 // for example the span and trace ID of the active span when the exemplar was recorded.
 type Exemplar struct {
-	Value              any
 	FilteredAttributes []KeyValue
 	TimeUnixNano       uint64
+	Value              any
 	TraceId            TraceID
 	SpanId             SpanID
 }
@@ -497,7 +497,7 @@ func (orig *Exemplar) UnmarshalProto(buf []byte) error {
 
 func GenTestExemplar() *Exemplar {
 	orig := NewExemplar()
-	orig.FilteredAttributes = []KeyValue{{}, *GenTestKeyValue()}
+	orig.FilteredAttributes = []KeyValue{KeyValue{}, *GenTestKeyValue()}
 	orig.TimeUnixNano = uint64(13)
 	orig.Value = &Exemplar_AsDouble{AsDouble: float64(3.1415926)}
 	orig.TraceId = *GenTestTraceID()

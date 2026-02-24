@@ -16,12 +16,12 @@ import (
 
 // Resource is a message representing the resource information.
 type Resource struct {
+	Attributes             []KeyValue
+	DroppedAttributesCount uint32
+	EntityRefs             []*EntityRef
 	EntityGuid             string
 	EntityType             string
 	EntityName             string
-	Attributes             []KeyValue
-	EntityRefs             []*EntityRef
-	DroppedAttributesCount uint32
 }
 
 var (
@@ -399,9 +399,9 @@ func (orig *Resource) UnmarshalProto(buf []byte) error {
 
 func GenTestResource() *Resource {
 	orig := NewResource()
-	orig.Attributes = []KeyValue{{}, *GenTestKeyValue()}
+	orig.Attributes = []KeyValue{KeyValue{}, *GenTestKeyValue()}
 	orig.DroppedAttributesCount = uint32(13)
-	orig.EntityRefs = []*EntityRef{{}, GenTestEntityRef()}
+	orig.EntityRefs = []*EntityRef{&EntityRef{}, GenTestEntityRef()}
 	orig.EntityGuid = "test_entityguid"
 	orig.EntityType = "test_entitytype"
 	orig.EntityName = "test_entityname"

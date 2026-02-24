@@ -221,7 +221,7 @@ func (orig *ArrayValue) UnmarshalProto(buf []byte) error {
 
 func GenTestArrayValue() *ArrayValue {
 	orig := NewArrayValue()
-	orig.Values = []AnyValue{{}, *GenTestAnyValue()}
+	orig.Values = []AnyValue{AnyValue{}, *GenTestAnyValue()}
 	return orig
 }
 

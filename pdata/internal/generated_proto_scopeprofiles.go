@@ -16,9 +16,9 @@ import (
 
 // ScopeProfiles is a collection of profiles from a LibraryInstrumentation.
 type ScopeProfiles struct {
-	SchemaUrl string
-	Profiles  []*Profile
 	Scope     InstrumentationScope
+	Profiles  []*Profile
+	SchemaUrl string
 }
 
 var (
@@ -290,7 +290,7 @@ func (orig *ScopeProfiles) UnmarshalProto(buf []byte) error {
 func GenTestScopeProfiles() *ScopeProfiles {
 	orig := NewScopeProfiles()
 	orig.Scope = *GenTestInstrumentationScope()
-	orig.Profiles = []*Profile{{}, GenTestProfile()}
+	orig.Profiles = []*Profile{&Profile{}, GenTestProfile()}
 	orig.SchemaUrl = "test_schemaurl"
 	return orig
 }

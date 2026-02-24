@@ -19,12 +19,12 @@ import (
 // different trace.
 // See Link definition in OTLP: https://github.com/open-telemetry/opentelemetry-proto/blob/main/opentelemetry/proto/trace/v1/trace.proto
 type SpanLink struct {
+	TraceId                TraceID
+	SpanId                 SpanID
 	TraceState             string
 	Attributes             []KeyValue
 	DroppedAttributesCount uint32
 	Flags                  uint32
-	TraceId                TraceID
-	SpanId                 SpanID
 }
 
 var (
@@ -389,7 +389,7 @@ func GenTestSpanLink() *SpanLink {
 	orig.TraceId = *GenTestTraceID()
 	orig.SpanId = *GenTestSpanID()
 	orig.TraceState = "test_tracestate"
-	orig.Attributes = []KeyValue{{}, *GenTestKeyValue()}
+	orig.Attributes = []KeyValue{KeyValue{}, *GenTestKeyValue()}
 	orig.DroppedAttributesCount = uint32(13)
 	orig.Flags = uint32(13)
 	return orig

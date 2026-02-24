@@ -19,17 +19,17 @@ import (
 // HistogramDataPoint is a single data point in a timeseries that describes the time-varying values of a Histogram of values.
 type HistogramDataPoint struct {
 	Attributes        []KeyValue
-	BucketCounts      []uint64
-	ExplicitBounds    []float64
-	Exemplars         []Exemplar
 	StartTimeUnixNano uint64
 	TimeUnixNano      uint64
 	Count             uint64
 	Sum               float64
+	BucketCounts      []uint64
+	ExplicitBounds    []float64
+	Exemplars         []Exemplar
+	Flags             uint32
 	Min               float64
 	Max               float64
 	metadata          [1]uint64
-	Flags             uint32
 }
 
 var (
@@ -674,14 +674,14 @@ func (m *HistogramDataPoint) HasMax() bool {
 
 func GenTestHistogramDataPoint() *HistogramDataPoint {
 	orig := NewHistogramDataPoint()
-	orig.Attributes = []KeyValue{{}, *GenTestKeyValue()}
+	orig.Attributes = []KeyValue{KeyValue{}, *GenTestKeyValue()}
 	orig.StartTimeUnixNano = uint64(13)
 	orig.TimeUnixNano = uint64(13)
 	orig.Count = uint64(13)
 	orig.SetSum(float64(3.1415926))
 	orig.BucketCounts = []uint64{uint64(0), uint64(13)}
 	orig.ExplicitBounds = []float64{float64(0), float64(3.1415926)}
-	orig.Exemplars = []Exemplar{{}, *GenTestExemplar()}
+	orig.Exemplars = []Exemplar{Exemplar{}, *GenTestExemplar()}
 	orig.Flags = uint32(13)
 	orig.SetMin(float64(3.1415926))
 	orig.SetMax(float64(3.1415926))

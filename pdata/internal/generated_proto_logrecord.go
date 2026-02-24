@@ -18,17 +18,17 @@ import (
 // LogRecord are experimental implementation of OpenTelemetry Log Data Model.
 
 type LogRecord struct {
-	Body                   AnyValue
-	SeverityText           string
-	EventName              string
-	Attributes             []KeyValue
 	TimeUnixNano           uint64
 	ObservedTimeUnixNano   uint64
 	SeverityNumber         SeverityNumber
+	SeverityText           string
+	Body                   AnyValue
+	Attributes             []KeyValue
 	DroppedAttributesCount uint32
 	Flags                  uint32
 	TraceId                TraceID
 	SpanId                 SpanID
+	EventName              string
 }
 
 var (
@@ -543,7 +543,7 @@ func GenTestLogRecord() *LogRecord {
 	orig.SeverityNumber = SeverityNumber(13)
 	orig.SeverityText = "test_severitytext"
 	orig.Body = *GenTestAnyValue()
-	orig.Attributes = []KeyValue{{}, *GenTestKeyValue()}
+	orig.Attributes = []KeyValue{KeyValue{}, *GenTestKeyValue()}
 	orig.DroppedAttributesCount = uint32(13)
 	orig.Flags = uint32(13)
 	orig.TraceId = *GenTestTraceID()

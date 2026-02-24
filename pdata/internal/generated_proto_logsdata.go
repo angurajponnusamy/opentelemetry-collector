@@ -223,7 +223,7 @@ func (orig *LogsData) UnmarshalProto(buf []byte) error {
 
 func GenTestLogsData() *LogsData {
 	orig := NewLogsData()
-	orig.ResourceLogs = []*ResourceLogs{{}, GenTestResourceLogs()}
+	orig.ResourceLogs = []*ResourceLogs{&ResourceLogs{}, GenTestResourceLogs()}
 	return orig
 }
 

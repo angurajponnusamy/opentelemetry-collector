@@ -15,8 +15,8 @@ import (
 )
 
 type KeyValue struct {
-	Value AnyValue
 	Key   string
+	Value AnyValue
 }
 
 var (

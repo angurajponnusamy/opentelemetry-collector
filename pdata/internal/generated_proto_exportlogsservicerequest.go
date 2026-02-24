@@ -222,7 +222,7 @@ func (orig *ExportLogsServiceRequest) UnmarshalProto(buf []byte) error {
 
 func GenTestExportLogsServiceRequest() *ExportLogsServiceRequest {
 	orig := NewExportLogsServiceRequest()
-	orig.ResourceLogs = []*ResourceLogs{{}, GenTestResourceLogs()}
+	orig.ResourceLogs = []*ResourceLogs{&ResourceLogs{}, GenTestResourceLogs()}
 	return orig
 }
 

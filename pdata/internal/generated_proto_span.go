@@ -18,22 +18,22 @@ import (
 // Span represents a single operation within a trace.
 // See Span definition in OTLP: https://github.com/open-telemetry/opentelemetry-proto/blob/main/opentelemetry/proto/trace/v1/trace.proto
 type Span struct {
-	TraceState             string
-	Name                   string
-	Attributes             []KeyValue
-	Events                 []*SpanEvent
-	Links                  []*SpanLink
-	Status                 Status
-	StartTimeUnixNano      uint64
-	EndTimeUnixNano        uint64
-	Flags                  uint32
-	Kind                   SpanKind
-	DroppedAttributesCount uint32
-	DroppedEventsCount     uint32
-	DroppedLinksCount      uint32
 	TraceId                TraceID
 	SpanId                 SpanID
+	TraceState             string
 	ParentSpanId           SpanID
+	Flags                  uint32
+	Name                   string
+	Kind                   SpanKind
+	StartTimeUnixNano      uint64
+	EndTimeUnixNano        uint64
+	Attributes             []KeyValue
+	DroppedAttributesCount uint32
+	Events                 []*SpanEvent
+	DroppedEventsCount     uint32
+	Links                  []*SpanLink
+	DroppedLinksCount      uint32
+	Status                 Status
 }
 
 var (
@@ -737,11 +737,11 @@ func GenTestSpan() *Span {
 	orig.Kind = SpanKind(13)
 	orig.StartTimeUnixNano = uint64(13)
 	orig.EndTimeUnixNano = uint64(13)
-	orig.Attributes = []KeyValue{{}, *GenTestKeyValue()}
+	orig.Attributes = []KeyValue{KeyValue{}, *GenTestKeyValue()}
 	orig.DroppedAttributesCount = uint32(13)
-	orig.Events = []*SpanEvent{{}, GenTestSpanEvent()}
+	orig.Events = []*SpanEvent{&SpanEvent{}, GenTestSpanEvent()}
 	orig.DroppedEventsCount = uint32(13)
-	orig.Links = []*SpanLink{{}, GenTestSpanLink()}
+	orig.Links = []*SpanLink{&SpanLink{}, GenTestSpanLink()}
 	orig.DroppedLinksCount = uint32(13)
 	orig.Status = *GenTestStatus()
 	return orig

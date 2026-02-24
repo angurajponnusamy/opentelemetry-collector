@@ -16,9 +16,9 @@ import (
 
 // ScopeMetrics is a collection of metrics from a LibraryInstrumentation.
 type ScopeMetrics struct {
-	SchemaUrl string
-	Metrics   []*Metric
 	Scope     InstrumentationScope
+	Metrics   []*Metric
+	SchemaUrl string
 }
 
 var (
@@ -290,7 +290,7 @@ func (orig *ScopeMetrics) UnmarshalProto(buf []byte) error {
 func GenTestScopeMetrics() *ScopeMetrics {
 	orig := NewScopeMetrics()
 	orig.Scope = *GenTestInstrumentationScope()
-	orig.Metrics = []*Metric{{}, GenTestMetric()}
+	orig.Metrics = []*Metric{&Metric{}, GenTestMetric()}
 	orig.SchemaUrl = "test_schemaurl"
 	return orig
 }

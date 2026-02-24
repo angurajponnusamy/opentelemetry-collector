@@ -18,17 +18,17 @@ import (
 // Profile are an implementation of the pprofextended data model.
 
 type Profile struct {
-	OriginalPayloadFormat  string
+	SampleType             ValueType
 	Samples                []*Sample
-	OriginalPayload        []byte
-	AttributeIndices       []int32
 	TimeUnixNano           uint64
 	DurationNano           uint64
-	Period                 int64
-	SampleType             ValueType
 	PeriodType             ValueType
-	DroppedAttributesCount uint32
+	Period                 int64
 	ProfileId              ProfileID
+	DroppedAttributesCount uint32
+	OriginalPayloadFormat  string
+	OriginalPayload        []byte
+	AttributeIndices       []int32
 }
 
 var (
@@ -575,7 +575,7 @@ func (orig *Profile) UnmarshalProto(buf []byte) error {
 func GenTestProfile() *Profile {
 	orig := NewProfile()
 	orig.SampleType = *GenTestValueType()
-	orig.Samples = []*Sample{{}, GenTestSample()}
+	orig.Samples = []*Sample{&Sample{}, GenTestSample()}
 	orig.TimeUnixNano = uint64(13)
 	orig.DurationNano = uint64(13)
 	orig.PeriodType = *GenTestValueType()

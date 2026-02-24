@@ -16,9 +16,9 @@ import (
 
 // ScopeSpans is a collection of spans from a LibraryInstrumentation.
 type ScopeSpans struct {
-	SchemaUrl string
-	Spans     []*Span
 	Scope     InstrumentationScope
+	Spans     []*Span
+	SchemaUrl string
 }
 
 var (
@@ -290,7 +290,7 @@ func (orig *ScopeSpans) UnmarshalProto(buf []byte) error {
 func GenTestScopeSpans() *ScopeSpans {
 	orig := NewScopeSpans()
 	orig.Scope = *GenTestInstrumentationScope()
-	orig.Spans = []*Span{{}, GenTestSpan()}
+	orig.Spans = []*Span{&Span{}, GenTestSpan()}
 	orig.SchemaUrl = "test_schemaurl"
 	return orig
 }

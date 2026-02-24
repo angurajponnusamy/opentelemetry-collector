@@ -221,7 +221,7 @@ func (orig *Gauge) UnmarshalProto(buf []byte) error {
 
 func GenTestGauge() *Gauge {
 	orig := NewGauge()
-	orig.DataPoints = []*NumberDataPoint{{}, GenTestNumberDataPoint()}
+	orig.DataPoints = []*NumberDataPoint{&NumberDataPoint{}, GenTestNumberDataPoint()}
 	return orig
 }
 

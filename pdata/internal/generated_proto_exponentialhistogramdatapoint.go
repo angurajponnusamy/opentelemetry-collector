@@ -21,21 +21,21 @@ import (
 // summary statistics for a population of values, it may optionally contain the
 // distribution of those values across a set of buckets.
 type ExponentialHistogramDataPoint struct {
-	Positive          ExponentialHistogramDataPointBuckets
-	Negative          ExponentialHistogramDataPointBuckets
 	Attributes        []KeyValue
-	Exemplars         []Exemplar
 	StartTimeUnixNano uint64
 	TimeUnixNano      uint64
 	Count             uint64
 	Sum               float64
+	Scale             int32
 	ZeroCount         uint64
+	Positive          ExponentialHistogramDataPointBuckets
+	Negative          ExponentialHistogramDataPointBuckets
+	Flags             uint32
+	Exemplars         []Exemplar
 	Min               float64
 	Max               float64
 	ZeroThreshold     float64
 	metadata          [1]uint64
-	Scale             int32
-	Flags             uint32
 }
 
 var (
@@ -697,7 +697,7 @@ func (m *ExponentialHistogramDataPoint) HasMax() bool {
 
 func GenTestExponentialHistogramDataPoint() *ExponentialHistogramDataPoint {
 	orig := NewExponentialHistogramDataPoint()
-	orig.Attributes = []KeyValue{{}, *GenTestKeyValue()}
+	orig.Attributes = []KeyValue{KeyValue{}, *GenTestKeyValue()}
 	orig.StartTimeUnixNano = uint64(13)
 	orig.TimeUnixNano = uint64(13)
 	orig.Count = uint64(13)
@@ -707,7 +707,7 @@ func GenTestExponentialHistogramDataPoint() *ExponentialHistogramDataPoint {
 	orig.Positive = *GenTestExponentialHistogramDataPointBuckets()
 	orig.Negative = *GenTestExponentialHistogramDataPointBuckets()
 	orig.Flags = uint32(13)
-	orig.Exemplars = []Exemplar{{}, *GenTestExemplar()}
+	orig.Exemplars = []Exemplar{Exemplar{}, *GenTestExemplar()}
 	orig.SetMin(float64(3.1415926))
 	orig.SetMax(float64(3.1415926))
 	orig.ZeroThreshold = float64(3.1415926)

@@ -221,7 +221,7 @@ func (orig *Summary) UnmarshalProto(buf []byte) error {
 
 func GenTestSummary() *Summary {
 	orig := NewSummary()
-	orig.DataPoints = []*SummaryDataPoint{{}, GenTestSummaryDataPoint()}
+	orig.DataPoints = []*SummaryDataPoint{&SummaryDataPoint{}, GenTestSummaryDataPoint()}
 	return orig
 }
 

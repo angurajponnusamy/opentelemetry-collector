@@ -19,11 +19,11 @@ import (
 // SummaryDataPoint is a single data point in a timeseries that describes the time-varying values of a Summary of double values.
 type SummaryDataPoint struct {
 	Attributes        []KeyValue
-	QuantileValues    []*SummaryDataPointValueAtQuantile
 	StartTimeUnixNano uint64
 	TimeUnixNano      uint64
 	Count             uint64
 	Sum               float64
+	QuantileValues    []*SummaryDataPointValueAtQuantile
 	Flags             uint32
 }
 
@@ -417,12 +417,12 @@ func (orig *SummaryDataPoint) UnmarshalProto(buf []byte) error {
 
 func GenTestSummaryDataPoint() *SummaryDataPoint {
 	orig := NewSummaryDataPoint()
-	orig.Attributes = []KeyValue{{}, *GenTestKeyValue()}
+	orig.Attributes = []KeyValue{KeyValue{}, *GenTestKeyValue()}
 	orig.StartTimeUnixNano = uint64(13)
 	orig.TimeUnixNano = uint64(13)
 	orig.Count = uint64(13)
 	orig.Sum = float64(3.1415926)
-	orig.QuantileValues = []*SummaryDataPointValueAtQuantile{{}, GenTestSummaryDataPointValueAtQuantile()}
+	orig.QuantileValues = []*SummaryDataPointValueAtQuantile{&SummaryDataPointValueAtQuantile{}, GenTestSummaryDataPointValueAtQuantile()}
 	orig.Flags = uint32(13)
 	return orig
 }

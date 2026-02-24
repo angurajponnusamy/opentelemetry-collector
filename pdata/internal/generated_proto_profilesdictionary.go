@@ -510,13 +510,13 @@ func (orig *ProfilesDictionary) UnmarshalProto(buf []byte) error {
 
 func GenTestProfilesDictionary() *ProfilesDictionary {
 	orig := NewProfilesDictionary()
-	orig.MappingTable = []*Mapping{{}, GenTestMapping()}
-	orig.LocationTable = []*Location{{}, GenTestLocation()}
-	orig.FunctionTable = []*Function{{}, GenTestFunction()}
-	orig.LinkTable = []*Link{{}, GenTestLink()}
+	orig.MappingTable = []*Mapping{&Mapping{}, GenTestMapping()}
+	orig.LocationTable = []*Location{&Location{}, GenTestLocation()}
+	orig.FunctionTable = []*Function{&Function{}, GenTestFunction()}
+	orig.LinkTable = []*Link{&Link{}, GenTestLink()}
 	orig.StringTable = []string{"", "test_stringtable"}
-	orig.AttributeTable = []*KeyValueAndUnit{{}, GenTestKeyValueAndUnit()}
-	orig.StackTable = []*Stack{{}, GenTestStack()}
+	orig.AttributeTable = []*KeyValueAndUnit{&KeyValueAndUnit{}, GenTestKeyValueAndUnit()}
+	orig.StackTable = []*Stack{&Stack{}, GenTestStack()}
 	return orig
 }
 
