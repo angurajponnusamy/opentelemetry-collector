@@ -8,7 +8,7 @@ package v1
 
 import (
 	v12 "go.opentelemetry.io/proto/otlp/common/v1"
-	v11 "go.virtana.io/vdc/proto/otlp/meta/v1"
+	v11 "go.virtana.io/vdc/proto/meta/v1"
 	v1 "go.virtana.io/vdc/proto/resource/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"

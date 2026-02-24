@@ -8,6 +8,7 @@ import (
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/reflection"
 	"google.golang.org/grpc/status"
 
 	"go.opentelemetry.io/collector/pdata/internal"
@@ -51,6 +52,7 @@ func (*UnimplementedTraceServiceServer) Export(context.Context, *internal.Export
 
 func RegisterTraceServiceServer(s *grpc.Server, srv TraceServiceServer) {
 	s.RegisterService(&traceServiceServiceDesc, srv)
+	reflection.Register(s)
 }
 
 // Context cannot be the first parameter of the function because gRPC definition.

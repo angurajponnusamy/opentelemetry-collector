@@ -8,6 +8,7 @@ import (
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/reflection"
 	"google.golang.org/grpc/status"
 
 	"go.opentelemetry.io/collector/pdata/internal"
@@ -30,7 +31,7 @@ func NewMetricsServiceClient(cc *grpc.ClientConn) MetricsServiceClient {
 
 func (c *metricsServiceClient) Export(ctx context.Context, in *internal.ExportMetricsServiceRequest, opts ...grpc.CallOption) (*internal.ExportMetricsServiceResponse, error) {
 	out := new(internal.ExportMetricsServiceResponse)
-	err := c.cc.Invoke(ctx, "/opentelemetry.proto.collector.metrics.v1.MetricsService/Export", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/virtana.vdc.proto.collector.metrics.v1.MetricsService/Export", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,6 +52,7 @@ func (*UnimplementedMetricsServiceServer) Export(context.Context, *internal.Expo
 
 func RegisterMetricsServiceServer(s *grpc.Server, srv MetricsServiceServer) {
 	s.RegisterService(&metricsServiceServiceDesc, srv)
+	reflection.Register(s)
 }
 
 // Context cannot be the first parameter of the function because gRPC definition.
@@ -66,7 +68,7 @@ func metricsServiceExportHandler(srv any, ctx context.Context, dec func(any) err
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/opentelemetry.proto.collector.metrics.v1.MetricsService/Export",
+		FullMethod: "/virtana.vdc.proto.collector.metrics.v1.MetricsService/Export",
 	}
 	handler := func(ctx context.Context, req any) (any, error) {
 		return srv.(MetricsServiceServer).Export(ctx, req.(*internal.ExportMetricsServiceRequest))
@@ -75,7 +77,7 @@ func metricsServiceExportHandler(srv any, ctx context.Context, dec func(any) err
 }
 
 var metricsServiceServiceDesc = grpc.ServiceDesc{
-	ServiceName: "opentelemetry.proto.collector.metrics.v1.MetricsService",
+	ServiceName: "virtana.vdc.proto.collector.metrics.v1.MetricsService",
 	HandlerType: (*MetricsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -84,5 +86,5 @@ var metricsServiceServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "opentelemetry/proto/collector/metrics/v1/metrics_service.proto",
+	Metadata: "virtana/vdc/proto/collector/metrics/v1/metrics_service.proto",
 }

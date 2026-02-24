@@ -98,8 +98,8 @@ const file_virtana_vdc_proto_meta_v1_meta_proto_rawDesc = "" +
 	"\tconfig_id\x18\x01 \x01(\tR\bconfigId\x12\x15\n" +
 	"\x06vdc_id\x18\x02 \x01(\tR\x05vdcId\x12'\n" +
 	"\x0fcollection_type\x18\x03 \x01(\tR\x0ecollectionType\x12#\n" +
-	"\rcollection_id\x18\x04 \x01(\tR\fcollectionIdBm\n" +
-	"\x1cio.virtana.vdc.proto.meta.v1B\tMetaProtoP\x01Z$go.virtana.io/vdc/proto/otlp/meta/v1\xaa\x02\x19Virtana.Vdc.Proto.Meta.V1b\x06proto3"
+	"\rcollection_id\x18\x04 \x01(\tR\fcollectionIdBh\n" +
+	"\x1cio.virtana.vdc.proto.meta.v1B\tMetaProtoP\x01Z\x1fgo.virtana.io/vdc/proto/meta/v1\xaa\x02\x19Virtana.Vdc.Proto.Meta.V1b\x06proto3"
 
 var (
 	file_virtana_vdc_proto_meta_v1_meta_proto_rawDescOnce sync.Once

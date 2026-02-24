@@ -32,6 +32,7 @@ var pcommon = &Package{
 			`"google.golang.org/protobuf/proto"`,
 			`gootlpcommon "go.opentelemetry.io/proto/slim/otlp/common/v1"`,
 			`gootlpresource "go.opentelemetry.io/proto/slim/otlp/resource/v1"`,
+			`gootlpmeta "go.virtana.io/vdc/proto/meta/v1"`,
 			``,
 			`"go.opentelemetry.io/collector/internal/testutil"`,
 			`"go.opentelemetry.io/collector/pdata/internal"`,
