@@ -221,7 +221,7 @@ func (orig *KeyValueList) UnmarshalProto(buf []byte) error {
 
 func GenTestKeyValueList() *KeyValueList {
 	orig := NewKeyValueList()
-	orig.Values = []KeyValue{KeyValue{}, *GenTestKeyValue()}
+	orig.Values = []KeyValue{{}, *GenTestKeyValue()}
 	return orig
 }
 

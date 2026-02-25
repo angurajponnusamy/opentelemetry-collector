@@ -222,7 +222,7 @@ func (orig *ExportTraceServiceRequest) UnmarshalProto(buf []byte) error {
 
 func GenTestExportTraceServiceRequest() *ExportTraceServiceRequest {
 	orig := NewExportTraceServiceRequest()
-	orig.ResourceSpans = []*ResourceSpans{&ResourceSpans{}, GenTestResourceSpans()}
+	orig.ResourceSpans = []*ResourceSpans{{}, GenTestResourceSpans()}
 	return orig
 }
 

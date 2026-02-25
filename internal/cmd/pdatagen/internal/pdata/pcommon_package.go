@@ -22,6 +22,7 @@ var pcommon = &Package{
 			`"go.opentelemetry.io/collector/pdata/internal/json"`,
 			`"go.opentelemetry.io/collector/pdata/internal/proto"`,
 			`gootlpmeta "go.virtana.io/vdc/proto/meta/v1"`,
+			`govirtanaresource "go.virtana.io/vdc/proto/resource/v1"`,
 		},
 		testImports: []string{
 			`"strconv"`,
@@ -256,7 +257,7 @@ var resource = &messageStruct{
 	packageName:   "pcommon",
 	description:   "// Resource is a message representing the resource information.",
 	protoName:     "Resource",
-	upstreamProto: "gootlpresource.Resource",
+	upstreamProto: "govirtanaresource.Resource",
 	fields: []Field{
 		&SliceField{
 			fieldName:   "Attributes",

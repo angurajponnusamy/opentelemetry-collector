@@ -373,9 +373,9 @@ func (orig *ResourceMetrics) UnmarshalProto(buf []byte) error {
 func GenTestResourceMetrics() *ResourceMetrics {
 	orig := NewResourceMetrics()
 	orig.Resource = *GenTestResource()
-	orig.ScopeMetrics = []*ScopeMetrics{&ScopeMetrics{}, GenTestScopeMetrics()}
+	orig.ScopeMetrics = []*ScopeMetrics{{}, GenTestScopeMetrics()}
 	orig.SchemaUrl = "test_schemaurl"
-	orig.DeprecatedScopeMetrics = []*ScopeMetrics{&ScopeMetrics{}, GenTestScopeMetrics()}
+	orig.DeprecatedScopeMetrics = []*ScopeMetrics{{}, GenTestScopeMetrics()}
 	orig.Meta = *GenTestMetaData()
 	return orig
 }

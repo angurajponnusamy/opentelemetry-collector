@@ -12,7 +12,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	gootlplogs "go.opentelemetry.io/proto/slim/otlp/logs/v1"
+	govirtanalogs "go.virtana.io/vdc/proto/logs/v1"
 	"google.golang.org/protobuf/proto"
 
 	"go.opentelemetry.io/collector/featuregate"
@@ -173,7 +173,7 @@ func TestMarshalAndUnmarshalProtoViaProtobufScopeLogs(t *testing.T) {
 			gotSize := src.MarshalProto(buf)
 			assert.Equal(t, len(buf), gotSize)
 
-			goDest := &gootlplogs.ScopeLogs{}
+			goDest := &govirtanalogs.ScopeLogs{}
 			require.NoError(t, proto.Unmarshal(buf, goDest))
 
 			goBuf, err := proto.Marshal(goDest)
@@ -189,12 +189,12 @@ func TestMarshalAndUnmarshalProtoViaProtobufScopeLogs(t *testing.T) {
 func genTestFailingUnmarshalProtoValuesScopeLogs() map[string][]byte {
 	return map[string][]byte{
 		"invalid_field":              {0x02},
-		"Scope/wrong_wire_type":      []byte{0xc},
-		"Scope/missing_value":        []byte{0xa},
-		"LogRecords/wrong_wire_type": []byte{0x14},
-		"LogRecords/missing_value":   []byte{0x12},
-		"SchemaUrl/wrong_wire_type":  []byte{0x1c},
-		"SchemaUrl/missing_value":    []byte{0x1a},
+		"Scope/wrong_wire_type":      {0xc},
+		"Scope/missing_value":        {0xa},
+		"LogRecords/wrong_wire_type": {0x14},
+		"LogRecords/missing_value":   {0x12},
+		"SchemaUrl/wrong_wire_type":  {0x1c},
+		"SchemaUrl/missing_value":    {0x1a},
 	}
 }
 
@@ -202,7 +202,7 @@ func genTestEncodingValuesScopeLogs() map[string]*ScopeLogs {
 	return map[string]*ScopeLogs{
 		"empty":           NewScopeLogs(),
 		"Scope/test":      {Scope: *GenTestInstrumentationScope()},
-		"LogRecords/test": {LogRecords: []*LogRecord{&LogRecord{}, GenTestLogRecord()}},
+		"LogRecords/test": {LogRecords: []*LogRecord{{}, GenTestLogRecord()}},
 		"SchemaUrl/test":  {SchemaUrl: "test_schemaurl"},
 	}
 }

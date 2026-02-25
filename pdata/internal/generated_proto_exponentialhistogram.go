@@ -252,7 +252,7 @@ func (orig *ExponentialHistogram) UnmarshalProto(buf []byte) error {
 
 func GenTestExponentialHistogram() *ExponentialHistogram {
 	orig := NewExponentialHistogram()
-	orig.DataPoints = []*ExponentialHistogramDataPoint{&ExponentialHistogramDataPoint{}, GenTestExponentialHistogramDataPoint()}
+	orig.DataPoints = []*ExponentialHistogramDataPoint{{}, GenTestExponentialHistogramDataPoint()}
 	orig.AggregationTemporality = AggregationTemporality(13)
 	return orig
 }

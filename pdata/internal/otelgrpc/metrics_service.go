@@ -10,9 +10,10 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"go.opentelemetry.io/collector/pdata/internal"
 	_ "go.virtana.io/vdc/proto/collector/metrics/v1"
 	_ "go.virtana.io/vdc/proto/resource/v1"
+
+	"go.opentelemetry.io/collector/pdata/internal"
 )
 
 // MetricsServiceClient is the client API for MetricsService service.

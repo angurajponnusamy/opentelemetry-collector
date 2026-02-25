@@ -290,7 +290,7 @@ func (orig *ScopeMetrics) UnmarshalProto(buf []byte) error {
 func GenTestScopeMetrics() *ScopeMetrics {
 	orig := NewScopeMetrics()
 	orig.Scope = *GenTestInstrumentationScope()
-	orig.Metrics = []*Metric{&Metric{}, GenTestMetric()}
+	orig.Metrics = []*Metric{{}, GenTestMetric()}
 	orig.SchemaUrl = "test_schemaurl"
 	return orig
 }

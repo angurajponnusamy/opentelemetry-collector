@@ -32,6 +32,7 @@ var plogotlp = &Package{
 			`"github.com/stretchr/testify/require"`,
 			`"google.golang.org/protobuf/proto"`,
 			`gootlpcollectorlogs "go.opentelemetry.io/proto/slim/otlp/collector/logs/v1"`,
+			`govirtanacollectorlogs "go.virtana.io/vdc/proto/collector/logs/v1"`,
 			``,
 			`"go.opentelemetry.io/collector/pdata/internal"`,
 		},
@@ -46,7 +47,7 @@ var exportLogsResponse = &messageStruct{
 	structName:    "ExportResponse",
 	description:   "// ExportResponse represents the response for gRPC/HTTP client/server.",
 	protoName:     "ExportLogsServiceResponse",
-	upstreamProto: "gootlpcollectorlogs.ExportLogsServiceResponse",
+	upstreamProto: "govirtanacollectorlogs.ExportLogsServiceResponse",
 	fields: []Field{
 		&MessageField{
 			fieldName:     "PartialSuccess",
@@ -60,7 +61,7 @@ var exportLogsPartialSuccess = &messageStruct{
 	structName:    "ExportPartialSuccess",
 	description:   "// ExportPartialSuccess represents the details of a partially successful export request.",
 	protoName:     "ExportLogsPartialSuccess",
-	upstreamProto: "gootlpcollectorlogs.ExportLogsPartialSuccess",
+	upstreamProto: "govirtanacollectorlogs.ExportLogsPartialSuccess",
 	fields: []Field{
 		&PrimitiveField{
 			fieldName: "RejectedLogRecords",

@@ -33,6 +33,8 @@ var plog = &Package{
 			`"google.golang.org/protobuf/proto"`,
 			`gootlpcollectorlogs "go.opentelemetry.io/proto/slim/otlp/collector/logs/v1"`,
 			`gootlplogs "go.opentelemetry.io/proto/slim/otlp/logs/v1"`,
+			`govirtanacollectorlogs "go.virtana.io/vdc/proto/collector/logs/v1"`,
+			`govirtanalogs "go.virtana.io/vdc/proto/logs/v1"`,
 			``,
 			`"go.opentelemetry.io/collector/pdata/internal"`,
 			`"go.opentelemetry.io/collector/pdata/internal/json"`,
@@ -58,7 +60,7 @@ var logs = &messageStruct{
 	structName:    "Logs",
 	description:   "// Logs is the top-level struct that is propagated through the logs pipeline.\n// Use NewLogs to create new instance, zero-initialized instance is not valid for use.",
 	protoName:     "ExportLogsServiceRequest",
-	upstreamProto: "gootlpcollectorlogs.ExportLogsServiceRequest",
+	upstreamProto: "govirtanacollectorlogs.ExportLogsServiceRequest",
 	fields: []Field{
 		&SliceField{
 			fieldName:   "ResourceLogs",
@@ -74,7 +76,7 @@ var logsData = &messageStruct{
 	structName:    "LogsData",
 	description:   "// LogsData represents the logs data that can be stored in a persistent storage,\n// OR can be embedded by other protocols that transfer OTLP logs data but do not\n// implement the OTLP protocol.",
 	protoName:     "LogsData",
-	upstreamProto: "gootlplogs.LogsData",
+	upstreamProto: "govirtanalogs.LogsData",
 	fields: []Field{
 		&SliceField{
 			fieldName:   "ResourceLogs",
@@ -96,7 +98,7 @@ var resourceLogs = &messageStruct{
 	structName:    "ResourceLogs",
 	description:   "// ResourceLogs is a collection of logs from a Resource.",
 	protoName:     "ResourceLogs",
-	upstreamProto: "gootlplogs.ResourceLogs",
+	upstreamProto: "govirtanalogs.ResourceLogs",
 	fields: []Field{
 		&MessageField{
 			fieldName:     "Resource",
@@ -136,7 +138,7 @@ var scopeLogs = &messageStruct{
 	structName:    "ScopeLogs",
 	description:   "// ScopeLogs is a collection of logs from a LibraryInstrumentation.",
 	protoName:     "ScopeLogs",
-	upstreamProto: "gootlplogs.ScopeLogs",
+	upstreamProto: "govirtanalogs.ScopeLogs",
 	fields: []Field{
 		&MessageField{
 			fieldName:     "Scope",
@@ -167,7 +169,7 @@ var logRecord = &messageStruct{
 	structName:    "LogRecord",
 	description:   "// LogRecord are experimental implementation of OpenTelemetry Log Data Model.\n",
 	protoName:     "LogRecord",
-	upstreamProto: "gootlplogs.LogRecord",
+	upstreamProto: "govirtanalogs.LogRecord",
 	fields: []Field{
 		&TypedField{
 			fieldName:       "Timestamp",

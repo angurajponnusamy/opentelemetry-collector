@@ -12,7 +12,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	gootlptrace "go.opentelemetry.io/proto/slim/otlp/trace/v1"
+	govirtanatrace "go.virtana.io/vdc/proto/traces/v1"
 	"google.golang.org/protobuf/proto"
 
 	"go.opentelemetry.io/collector/featuregate"
@@ -173,7 +173,7 @@ func TestMarshalAndUnmarshalProtoViaProtobufTracesData(t *testing.T) {
 			gotSize := src.MarshalProto(buf)
 			assert.Equal(t, len(buf), gotSize)
 
-			goDest := &gootlptrace.TracesData{}
+			goDest := &govirtanatrace.TracesData{}
 			require.NoError(t, proto.Unmarshal(buf, goDest))
 
 			goBuf, err := proto.Marshal(goDest)
@@ -189,14 +189,14 @@ func TestMarshalAndUnmarshalProtoViaProtobufTracesData(t *testing.T) {
 func genTestFailingUnmarshalProtoValuesTracesData() map[string][]byte {
 	return map[string][]byte{
 		"invalid_field":                 {0x02},
-		"ResourceSpans/wrong_wire_type": []byte{0xc},
-		"ResourceSpans/missing_value":   []byte{0xa},
+		"ResourceSpans/wrong_wire_type": {0xc},
+		"ResourceSpans/missing_value":   {0xa},
 	}
 }
 
 func genTestEncodingValuesTracesData() map[string]*TracesData {
 	return map[string]*TracesData{
 		"empty":              NewTracesData(),
-		"ResourceSpans/test": {ResourceSpans: []*ResourceSpans{&ResourceSpans{}, GenTestResourceSpans()}},
+		"ResourceSpans/test": {ResourceSpans: []*ResourceSpans{{}, GenTestResourceSpans()}},
 	}
 }

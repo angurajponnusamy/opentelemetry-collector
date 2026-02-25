@@ -497,7 +497,7 @@ func (orig *Exemplar) UnmarshalProto(buf []byte) error {
 
 func GenTestExemplar() *Exemplar {
 	orig := NewExemplar()
-	orig.FilteredAttributes = []KeyValue{KeyValue{}, *GenTestKeyValue()}
+	orig.FilteredAttributes = []KeyValue{{}, *GenTestKeyValue()}
 	orig.TimeUnixNano = uint64(13)
 	orig.Value = &Exemplar_AsDouble{AsDouble: float64(3.1415926)}
 	orig.TraceId = *GenTestTraceID()

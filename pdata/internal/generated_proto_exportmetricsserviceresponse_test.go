@@ -12,10 +12,11 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	govirtanacollectormetrics "go.virtana.io/vdc/proto/collector/metrics/v1"
+	"google.golang.org/protobuf/proto"
+
 	"go.opentelemetry.io/collector/featuregate"
 	"go.opentelemetry.io/collector/pdata/internal/json"
-	gootlpcollectormetrics "go.opentelemetry.io/proto/slim/otlp/collector/metrics/v1"
-	"google.golang.org/protobuf/proto"
 )
 
 func TestCopyExportMetricsServiceResponse(t *testing.T) {
@@ -172,7 +173,7 @@ func TestMarshalAndUnmarshalProtoViaProtobufExportMetricsServiceResponse(t *test
 			gotSize := src.MarshalProto(buf)
 			assert.Equal(t, len(buf), gotSize)
 
-			goDest := &gootlpcollectormetrics.ExportMetricsServiceResponse{}
+			goDest := &govirtanacollectormetrics.ExportMetricsServiceResponse{}
 			require.NoError(t, proto.Unmarshal(buf, goDest))
 
 			goBuf, err := proto.Marshal(goDest)
@@ -188,8 +189,8 @@ func TestMarshalAndUnmarshalProtoViaProtobufExportMetricsServiceResponse(t *test
 func genTestFailingUnmarshalProtoValuesExportMetricsServiceResponse() map[string][]byte {
 	return map[string][]byte{
 		"invalid_field":                  {0x02},
-		"PartialSuccess/wrong_wire_type": []byte{0xc},
-		"PartialSuccess/missing_value":   []byte{0xa},
+		"PartialSuccess/wrong_wire_type": {0xc},
+		"PartialSuccess/missing_value":   {0xa},
 	}
 }
 

@@ -10,9 +10,10 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"go.opentelemetry.io/collector/pdata/internal"
 	_ "go.virtana.io/vdc/proto/collector/traces/v1"
 	_ "go.virtana.io/vdc/proto/traces/v1"
+
+	"go.opentelemetry.io/collector/pdata/internal"
 )
 
 // TraceServiceClient is the client API for TraceService service.

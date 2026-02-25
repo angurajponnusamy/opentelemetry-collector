@@ -290,7 +290,7 @@ func (orig *ResourceProfiles) UnmarshalProto(buf []byte) error {
 func GenTestResourceProfiles() *ResourceProfiles {
 	orig := NewResourceProfiles()
 	orig.Resource = *GenTestResource()
-	orig.ScopeProfiles = []*ScopeProfiles{&ScopeProfiles{}, GenTestScopeProfiles()}
+	orig.ScopeProfiles = []*ScopeProfiles{{}, GenTestScopeProfiles()}
 	orig.SchemaUrl = "test_schemaurl"
 	return orig
 }

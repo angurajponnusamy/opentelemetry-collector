@@ -12,7 +12,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	gootlpcollectormetrics "go.opentelemetry.io/proto/slim/otlp/collector/metrics/v1"
+	govirtanacollectormetrics "go.virtana.io/vdc/proto/collector/metrics/v1"
 	"google.golang.org/protobuf/proto"
 
 	"go.opentelemetry.io/collector/featuregate"
@@ -173,7 +173,7 @@ func TestMarshalAndUnmarshalProtoViaProtobufExportMetricsServiceRequest(t *testi
 			gotSize := src.MarshalProto(buf)
 			assert.Equal(t, len(buf), gotSize)
 
-			goDest := &gootlpcollectormetrics.ExportMetricsServiceRequest{}
+			goDest := &govirtanacollectormetrics.ExportMetricsServiceRequest{}
 			require.NoError(t, proto.Unmarshal(buf, goDest))
 
 			goBuf, err := proto.Marshal(goDest)
@@ -189,14 +189,14 @@ func TestMarshalAndUnmarshalProtoViaProtobufExportMetricsServiceRequest(t *testi
 func genTestFailingUnmarshalProtoValuesExportMetricsServiceRequest() map[string][]byte {
 	return map[string][]byte{
 		"invalid_field":                   {0x02},
-		"ResourceMetrics/wrong_wire_type": []byte{0xc},
-		"ResourceMetrics/missing_value":   []byte{0xa},
+		"ResourceMetrics/wrong_wire_type": {0xc},
+		"ResourceMetrics/missing_value":   {0xa},
 	}
 }
 
 func genTestEncodingValuesExportMetricsServiceRequest() map[string]*ExportMetricsServiceRequest {
 	return map[string]*ExportMetricsServiceRequest{
 		"empty":                NewExportMetricsServiceRequest(),
-		"ResourceMetrics/test": {ResourceMetrics: []*ResourceMetrics{&ResourceMetrics{}, GenTestResourceMetrics()}},
+		"ResourceMetrics/test": {ResourceMetrics: []*ResourceMetrics{{}, GenTestResourceMetrics()}},
 	}
 }

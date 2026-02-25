@@ -346,7 +346,7 @@ func GenTestLocation() *Location {
 	orig := NewLocation()
 	orig.MappingIndex = int32(13)
 	orig.Address = uint64(13)
-	orig.Lines = []*Line{&Line{}, GenTestLine()}
+	orig.Lines = []*Line{{}, GenTestLine()}
 	orig.AttributeIndices = []int32{int32(0), int32(13)}
 	return orig
 }

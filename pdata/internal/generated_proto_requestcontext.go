@@ -626,7 +626,7 @@ func (orig *RequestContext) UnmarshalProto(buf []byte) error {
 func GenTestRequestContext() *RequestContext {
 	orig := NewRequestContext()
 	orig.SpanContext = GenTestSpanContext()
-	orig.ClientMetadata = []KeyValue{KeyValue{}, *GenTestKeyValue()}
+	orig.ClientMetadata = []KeyValue{{}, *GenTestKeyValue()}
 	orig.ClientAddress = &RequestContext_IP{IP: GenTestIPAddr()}
 	return orig
 }

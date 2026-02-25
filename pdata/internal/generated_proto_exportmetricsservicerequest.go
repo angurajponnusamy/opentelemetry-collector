@@ -222,7 +222,7 @@ func (orig *ExportMetricsServiceRequest) UnmarshalProto(buf []byte) error {
 
 func GenTestExportMetricsServiceRequest() *ExportMetricsServiceRequest {
 	orig := NewExportMetricsServiceRequest()
-	orig.ResourceMetrics = []*ResourceMetrics{&ResourceMetrics{}, GenTestResourceMetrics()}
+	orig.ResourceMetrics = []*ResourceMetrics{{}, GenTestResourceMetrics()}
 	return orig
 }
 

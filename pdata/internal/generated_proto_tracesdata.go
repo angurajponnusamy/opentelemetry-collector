@@ -223,7 +223,7 @@ func (orig *TracesData) UnmarshalProto(buf []byte) error {
 
 func GenTestTracesData() *TracesData {
 	orig := NewTracesData()
-	orig.ResourceSpans = []*ResourceSpans{&ResourceSpans{}, GenTestResourceSpans()}
+	orig.ResourceSpans = []*ResourceSpans{{}, GenTestResourceSpans()}
 	return orig
 }
 

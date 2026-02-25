@@ -290,7 +290,7 @@ func (orig *ScopeLogs) UnmarshalProto(buf []byte) error {
 func GenTestScopeLogs() *ScopeLogs {
 	orig := NewScopeLogs()
 	orig.Scope = *GenTestInstrumentationScope()
-	orig.LogRecords = []*LogRecord{&LogRecord{}, GenTestLogRecord()}
+	orig.LogRecords = []*LogRecord{{}, GenTestLogRecord()}
 	orig.SchemaUrl = "test_schemaurl"
 	return orig
 }

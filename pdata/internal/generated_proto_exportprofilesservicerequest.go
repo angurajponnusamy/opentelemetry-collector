@@ -255,7 +255,7 @@ func (orig *ExportProfilesServiceRequest) UnmarshalProto(buf []byte) error {
 
 func GenTestExportProfilesServiceRequest() *ExportProfilesServiceRequest {
 	orig := NewExportProfilesServiceRequest()
-	orig.ResourceProfiles = []*ResourceProfiles{&ResourceProfiles{}, GenTestResourceProfiles()}
+	orig.ResourceProfiles = []*ResourceProfiles{{}, GenTestResourceProfiles()}
 	orig.Dictionary = *GenTestProfilesDictionary()
 	return orig
 }

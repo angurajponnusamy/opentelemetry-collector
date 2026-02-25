@@ -10,9 +10,10 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"go.opentelemetry.io/collector/pdata/internal"
 	_ "go.virtana.io/vdc/proto/collector/logs/v1"
 	_ "go.virtana.io/vdc/proto/logs/v1"
+
+	"go.opentelemetry.io/collector/pdata/internal"
 )
 
 // LogsServiceClient is the client API for LogsService service.

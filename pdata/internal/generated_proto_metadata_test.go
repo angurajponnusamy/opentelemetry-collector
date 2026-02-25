@@ -189,14 +189,14 @@ func TestMarshalAndUnmarshalProtoViaProtobufMetaData(t *testing.T) {
 func genTestFailingUnmarshalProtoValuesMetaData() map[string][]byte {
 	return map[string][]byte{
 		"invalid_field":                  {0x02},
-		"ConfigId/wrong_wire_type":       []byte{0xc},
-		"ConfigId/missing_value":         []byte{0xa},
-		"VdcId/wrong_wire_type":          []byte{0x14},
-		"VdcId/missing_value":            []byte{0x12},
-		"CollectionType/wrong_wire_type": []byte{0x1c},
-		"CollectionType/missing_value":   []byte{0x1a},
-		"CollectionId/wrong_wire_type":   []byte{0x24},
-		"CollectionId/missing_value":     []byte{0x22},
+		"ConfigId/wrong_wire_type":       {0xc},
+		"ConfigId/missing_value":         {0xa},
+		"VdcId/wrong_wire_type":          {0x14},
+		"VdcId/missing_value":            {0x12},
+		"CollectionType/wrong_wire_type": {0x1c},
+		"CollectionType/missing_value":   {0x1a},
+		"CollectionId/wrong_wire_type":   {0x24},
+		"CollectionId/missing_value":     {0x22},
 	}
 }
 

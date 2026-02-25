@@ -340,9 +340,9 @@ func (orig *ResourceSpans) UnmarshalProto(buf []byte) error {
 func GenTestResourceSpans() *ResourceSpans {
 	orig := NewResourceSpans()
 	orig.Resource = *GenTestResource()
-	orig.ScopeSpans = []*ScopeSpans{&ScopeSpans{}, GenTestScopeSpans()}
+	orig.ScopeSpans = []*ScopeSpans{{}, GenTestScopeSpans()}
 	orig.SchemaUrl = "test_schemaurl"
-	orig.DeprecatedScopeSpans = []*ScopeSpans{&ScopeSpans{}, GenTestScopeSpans()}
+	orig.DeprecatedScopeSpans = []*ScopeSpans{{}, GenTestScopeSpans()}
 	return orig
 }
 

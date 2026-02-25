@@ -697,7 +697,7 @@ func (m *ExponentialHistogramDataPoint) HasMax() bool {
 
 func GenTestExponentialHistogramDataPoint() *ExponentialHistogramDataPoint {
 	orig := NewExponentialHistogramDataPoint()
-	orig.Attributes = []KeyValue{KeyValue{}, *GenTestKeyValue()}
+	orig.Attributes = []KeyValue{{}, *GenTestKeyValue()}
 	orig.StartTimeUnixNano = uint64(13)
 	orig.TimeUnixNano = uint64(13)
 	orig.Count = uint64(13)
@@ -707,7 +707,7 @@ func GenTestExponentialHistogramDataPoint() *ExponentialHistogramDataPoint {
 	orig.Positive = *GenTestExponentialHistogramDataPointBuckets()
 	orig.Negative = *GenTestExponentialHistogramDataPointBuckets()
 	orig.Flags = uint32(13)
-	orig.Exemplars = []Exemplar{Exemplar{}, *GenTestExemplar()}
+	orig.Exemplars = []Exemplar{{}, *GenTestExemplar()}
 	orig.SetMin(float64(3.1415926))
 	orig.SetMax(float64(3.1415926))
 	orig.ZeroThreshold = float64(3.1415926)

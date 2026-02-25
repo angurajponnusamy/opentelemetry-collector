@@ -256,7 +256,7 @@ func (orig *ProfilesData) UnmarshalProto(buf []byte) error {
 
 func GenTestProfilesData() *ProfilesData {
 	orig := NewProfilesData()
-	orig.ResourceProfiles = []*ResourceProfiles{&ResourceProfiles{}, GenTestResourceProfiles()}
+	orig.ResourceProfiles = []*ResourceProfiles{{}, GenTestResourceProfiles()}
 	orig.Dictionary = *GenTestProfilesDictionary()
 	return orig
 }

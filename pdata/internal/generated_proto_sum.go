@@ -283,7 +283,7 @@ func (orig *Sum) UnmarshalProto(buf []byte) error {
 
 func GenTestSum() *Sum {
 	orig := NewSum()
-	orig.DataPoints = []*NumberDataPoint{&NumberDataPoint{}, GenTestNumberDataPoint()}
+	orig.DataPoints = []*NumberDataPoint{{}, GenTestNumberDataPoint()}
 	orig.AggregationTemporality = AggregationTemporality(13)
 	orig.IsMonotonic = true
 	return orig

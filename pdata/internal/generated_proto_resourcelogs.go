@@ -340,9 +340,9 @@ func (orig *ResourceLogs) UnmarshalProto(buf []byte) error {
 func GenTestResourceLogs() *ResourceLogs {
 	orig := NewResourceLogs()
 	orig.Resource = *GenTestResource()
-	orig.ScopeLogs = []*ScopeLogs{&ScopeLogs{}, GenTestScopeLogs()}
+	orig.ScopeLogs = []*ScopeLogs{{}, GenTestScopeLogs()}
 	orig.SchemaUrl = "test_schemaurl"
-	orig.DeprecatedScopeLogs = []*ScopeLogs{&ScopeLogs{}, GenTestScopeLogs()}
+	orig.DeprecatedScopeLogs = []*ScopeLogs{{}, GenTestScopeLogs()}
 	return orig
 }
 

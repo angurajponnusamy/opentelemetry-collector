@@ -42,4 +42,9 @@ message Resource {
   //
   // Status: [Development]
   repeated opentelemetry.proto.common.v1.EntityRef entity_refs = 3;
+
+  // Virtana custom fields
+  string entity_guid = 4;
+  string entity_type = 5;
+  string entity_name = 6;
 }

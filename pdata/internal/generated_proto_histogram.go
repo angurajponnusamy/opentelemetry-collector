@@ -251,7 +251,7 @@ func (orig *Histogram) UnmarshalProto(buf []byte) error {
 
 func GenTestHistogram() *Histogram {
 	orig := NewHistogram()
-	orig.DataPoints = []*HistogramDataPoint{&HistogramDataPoint{}, GenTestHistogramDataPoint()}
+	orig.DataPoints = []*HistogramDataPoint{{}, GenTestHistogramDataPoint()}
 	orig.AggregationTemporality = AggregationTemporality(13)
 	return orig
 }

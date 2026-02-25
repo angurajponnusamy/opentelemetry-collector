@@ -12,7 +12,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	gootlpmetrics "go.opentelemetry.io/proto/slim/otlp/metrics/v1"
+	govirtanametrics "go.virtana.io/vdc/proto/metrics/v1"
 	"google.golang.org/protobuf/proto"
 
 	"go.opentelemetry.io/collector/featuregate"
@@ -173,7 +173,7 @@ func TestMarshalAndUnmarshalProtoViaProtobufResourceMetrics(t *testing.T) {
 			gotSize := src.MarshalProto(buf)
 			assert.Equal(t, len(buf), gotSize)
 
-			goDest := &gootlpmetrics.ResourceMetrics{}
+			goDest := &govirtanametrics.ResourceMetrics{}
 			require.NoError(t, proto.Unmarshal(buf, goDest))
 
 			goBuf, err := proto.Marshal(goDest)
@@ -189,16 +189,16 @@ func TestMarshalAndUnmarshalProtoViaProtobufResourceMetrics(t *testing.T) {
 func genTestFailingUnmarshalProtoValuesResourceMetrics() map[string][]byte {
 	return map[string][]byte{
 		"invalid_field":                          {0x02},
-		"Resource/wrong_wire_type":               []byte{0xc},
-		"Resource/missing_value":                 []byte{0xa},
-		"ScopeMetrics/wrong_wire_type":           []byte{0x14},
-		"ScopeMetrics/missing_value":             []byte{0x12},
-		"SchemaUrl/wrong_wire_type":              []byte{0x1c},
-		"SchemaUrl/missing_value":                []byte{0x1a},
-		"DeprecatedScopeMetrics/wrong_wire_type": []byte{0xc4, 0x3e},
-		"DeprecatedScopeMetrics/missing_value":   []byte{0xc2, 0x3e},
-		"Meta/wrong_wire_type":                   []byte{0x24},
-		"Meta/missing_value":                     []byte{0x22},
+		"Resource/wrong_wire_type":               {0xc},
+		"Resource/missing_value":                 {0xa},
+		"ScopeMetrics/wrong_wire_type":           {0x14},
+		"ScopeMetrics/missing_value":             {0x12},
+		"SchemaUrl/wrong_wire_type":              {0x1c},
+		"SchemaUrl/missing_value":                {0x1a},
+		"DeprecatedScopeMetrics/wrong_wire_type": {0xc4, 0x3e},
+		"DeprecatedScopeMetrics/missing_value":   {0xc2, 0x3e},
+		"Meta/wrong_wire_type":                   {0x24},
+		"Meta/missing_value":                     {0x22},
 	}
 }
 
@@ -206,9 +206,9 @@ func genTestEncodingValuesResourceMetrics() map[string]*ResourceMetrics {
 	return map[string]*ResourceMetrics{
 		"empty":                       NewResourceMetrics(),
 		"Resource/test":               {Resource: *GenTestResource()},
-		"ScopeMetrics/test":           {ScopeMetrics: []*ScopeMetrics{&ScopeMetrics{}, GenTestScopeMetrics()}},
+		"ScopeMetrics/test":           {ScopeMetrics: []*ScopeMetrics{{}, GenTestScopeMetrics()}},
 		"SchemaUrl/test":              {SchemaUrl: "test_schemaurl"},
-		"DeprecatedScopeMetrics/test": {DeprecatedScopeMetrics: []*ScopeMetrics{&ScopeMetrics{}, GenTestScopeMetrics()}},
+		"DeprecatedScopeMetrics/test": {DeprecatedScopeMetrics: []*ScopeMetrics{{}, GenTestScopeMetrics()}},
 		"Meta/test":                   {Meta: *GenTestMetaData()},
 	}
 }

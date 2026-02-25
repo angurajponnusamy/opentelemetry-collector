@@ -223,7 +223,7 @@ func (orig *MetricsData) UnmarshalProto(buf []byte) error {
 
 func GenTestMetricsData() *MetricsData {
 	orig := NewMetricsData()
-	orig.ResourceMetrics = []*ResourceMetrics{&ResourceMetrics{}, GenTestResourceMetrics()}
+	orig.ResourceMetrics = []*ResourceMetrics{{}, GenTestResourceMetrics()}
 	return orig
 }
 

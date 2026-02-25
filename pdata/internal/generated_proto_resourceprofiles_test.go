@@ -189,12 +189,12 @@ func TestMarshalAndUnmarshalProtoViaProtobufResourceProfiles(t *testing.T) {
 func genTestFailingUnmarshalProtoValuesResourceProfiles() map[string][]byte {
 	return map[string][]byte{
 		"invalid_field":                 {0x02},
-		"Resource/wrong_wire_type":      []byte{0xc},
-		"Resource/missing_value":        []byte{0xa},
-		"ScopeProfiles/wrong_wire_type": []byte{0x14},
-		"ScopeProfiles/missing_value":   []byte{0x12},
-		"SchemaUrl/wrong_wire_type":     []byte{0x1c},
-		"SchemaUrl/missing_value":       []byte{0x1a},
+		"Resource/wrong_wire_type":      {0xc},
+		"Resource/missing_value":        {0xa},
+		"ScopeProfiles/wrong_wire_type": {0x14},
+		"ScopeProfiles/missing_value":   {0x12},
+		"SchemaUrl/wrong_wire_type":     {0x1c},
+		"SchemaUrl/missing_value":       {0x1a},
 	}
 }
 
@@ -202,7 +202,7 @@ func genTestEncodingValuesResourceProfiles() map[string]*ResourceProfiles {
 	return map[string]*ResourceProfiles{
 		"empty":              NewResourceProfiles(),
 		"Resource/test":      {Resource: *GenTestResource()},
-		"ScopeProfiles/test": {ScopeProfiles: []*ScopeProfiles{&ScopeProfiles{}, GenTestScopeProfiles()}},
+		"ScopeProfiles/test": {ScopeProfiles: []*ScopeProfiles{{}, GenTestScopeProfiles()}},
 		"SchemaUrl/test":     {SchemaUrl: "test_schemaurl"},
 	}
 }
