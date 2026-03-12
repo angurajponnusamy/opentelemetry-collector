@@ -12,7 +12,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	gootlpmetrics "go.opentelemetry.io/proto/slim/otlp/metrics/v1"
+	govirtanametrics "go.virtana.io/vdc/proto/metrics/v1"
 	"google.golang.org/protobuf/proto"
 
 	"go.opentelemetry.io/collector/featuregate"
@@ -173,7 +173,7 @@ func TestMarshalAndUnmarshalProtoViaProtobufResourceMetrics(t *testing.T) {
 			gotSize := src.MarshalProto(buf)
 			assert.Equal(t, len(buf), gotSize)
 
-			goDest := &gootlpmetrics.ResourceMetrics{}
+			goDest := &govirtanametrics.ResourceMetrics{}
 			require.NoError(t, proto.Unmarshal(buf, goDest))
 
 			goBuf, err := proto.Marshal(goDest)
@@ -197,6 +197,8 @@ func genTestFailingUnmarshalProtoValuesResourceMetrics() map[string][]byte {
 		"SchemaUrl/missing_value":                {0x1a},
 		"DeprecatedScopeMetrics/wrong_wire_type": {0xc4, 0x3e},
 		"DeprecatedScopeMetrics/missing_value":   {0xc2, 0x3e},
+		"Meta/wrong_wire_type":                   {0x24},
+		"Meta/missing_value":                     {0x22},
 	}
 }
 
@@ -207,5 +209,6 @@ func genTestEncodingValuesResourceMetrics() map[string]*ResourceMetrics {
 		"ScopeMetrics/test":           {ScopeMetrics: []*ScopeMetrics{{}, GenTestScopeMetrics()}},
 		"SchemaUrl/test":              {SchemaUrl: "test_schemaurl"},
 		"DeprecatedScopeMetrics/test": {DeprecatedScopeMetrics: []*ScopeMetrics{{}, GenTestScopeMetrics()}},
+		"Meta/test":                   {Meta: *GenTestMetaData()},
 	}
 }

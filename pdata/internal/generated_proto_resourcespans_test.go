@@ -12,7 +12,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	gootlptrace "go.opentelemetry.io/proto/slim/otlp/trace/v1"
+	govirtanatrace "go.virtana.io/vdc/proto/traces/v1"
 	"google.golang.org/protobuf/proto"
 
 	"go.opentelemetry.io/collector/featuregate"
@@ -173,7 +173,7 @@ func TestMarshalAndUnmarshalProtoViaProtobufResourceSpans(t *testing.T) {
 			gotSize := src.MarshalProto(buf)
 			assert.Equal(t, len(buf), gotSize)
 
-			goDest := &gootlptrace.ResourceSpans{}
+			goDest := &govirtanatrace.ResourceSpans{}
 			require.NoError(t, proto.Unmarshal(buf, goDest))
 
 			goBuf, err := proto.Marshal(goDest)

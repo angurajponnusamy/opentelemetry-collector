@@ -12,7 +12,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	gootlpcollectormetrics "go.opentelemetry.io/proto/slim/otlp/collector/metrics/v1"
+	govirtanacollectormetrics "go.virtana.io/vdc/proto/collector/metrics/v1"
 	"google.golang.org/protobuf/proto"
 
 	"go.opentelemetry.io/collector/featuregate"
@@ -173,7 +173,7 @@ func TestMarshalAndUnmarshalProtoViaProtobufExportMetricsServiceRequest(t *testi
 			gotSize := src.MarshalProto(buf)
 			assert.Equal(t, len(buf), gotSize)
 
-			goDest := &gootlpcollectormetrics.ExportMetricsServiceRequest{}
+			goDest := &govirtanacollectormetrics.ExportMetricsServiceRequest{}
 			require.NoError(t, proto.Unmarshal(buf, goDest))
 
 			goBuf, err := proto.Marshal(goDest)

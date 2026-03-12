@@ -33,6 +33,8 @@ var pmetric = &Package{
 			`"google.golang.org/protobuf/proto"`,
 			`gootlpcollectormetrics "go.opentelemetry.io/proto/slim/otlp/collector/metrics/v1"`,
 			`gootlpmetrics "go.opentelemetry.io/proto/slim/otlp/metrics/v1"`,
+			`govirtanacollectormetrics "go.virtana.io/vdc/proto/collector/metrics/v1"`,
+			`govirtanametrics "go.virtana.io/vdc/proto/metrics/v1"`,
 			``,
 			`"go.opentelemetry.io/collector/pdata/internal"`,
 			`"go.opentelemetry.io/collector/pdata/internal/json"`,
@@ -76,7 +78,7 @@ var metrics = &messageStruct{
 	structName:    "Metrics",
 	description:   "// Metrics is the top-level struct that is propagated through the metrics pipeline.\n// Use NewMetrics to create new instance, zero-initialized instance is not valid for use.",
 	protoName:     "ExportMetricsServiceRequest",
-	upstreamProto: "gootlpcollectormetrics.ExportMetricsServiceRequest",
+	upstreamProto: "govirtanacollectormetrics.ExportMetricsServiceRequest",
 	fields: []Field{
 		&SliceField{
 			fieldName:   "ResourceMetrics",
@@ -92,7 +94,7 @@ var metricsData = &messageStruct{
 	structName:    "MetricsData",
 	description:   "// MetricsData represents the metrics data that can be stored in a persistent storage,\n// OR can be embedded by other protocols that transfer OTLP metrics data but do not\n// implement the OTLP protocol..",
 	protoName:     "MetricsData",
-	upstreamProto: "gootlpmetrics.MetricsData",
+	upstreamProto: "govirtanametrics.MetricsData",
 	fields: []Field{
 		&SliceField{
 			fieldName:   "ResourceMetrics",
@@ -114,7 +116,7 @@ var resourceMetrics = &messageStruct{
 	structName:    "ResourceMetrics",
 	description:   "// ResourceMetrics is a collection of metrics from a Resource.",
 	protoName:     "ResourceMetrics",
-	upstreamProto: "gootlpmetrics.ResourceMetrics",
+	upstreamProto: "govirtanametrics.ResourceMetrics",
 	fields: []Field{
 		&MessageField{
 			fieldName:     "Resource",
@@ -141,6 +143,11 @@ var resourceMetrics = &messageStruct{
 			// Workaround for istio 1.15 / envoy 1.23.1 mistakenly emitting deprecated field.
 			hideAccessors: true,
 		},
+		&MessageField{
+			fieldName:     "Meta",
+			protoID:       4,
+			returnMessage: metaData,
+		},
 	},
 }
 
@@ -154,7 +161,7 @@ var scopeMetrics = &messageStruct{
 	structName:    "ScopeMetrics",
 	description:   "// ScopeMetrics is a collection of metrics from a LibraryInstrumentation.",
 	protoName:     "ScopeMetrics",
-	upstreamProto: "gootlpmetrics.ScopeMetrics",
+	upstreamProto: "govirtanametrics.ScopeMetrics",
 	fields: []Field{
 		&MessageField{
 			fieldName:     "Scope",
@@ -186,7 +193,7 @@ var metric = &messageStruct{
 	description: "// Metric represents one metric as a collection of datapoints.\n" +
 		"// See Metric definition in OTLP: https://github.com/open-telemetry/opentelemetry-proto/blob/main/opentelemetry/proto/metrics/v1/metrics.proto",
 	protoName:     "Metric",
-	upstreamProto: "gootlpmetrics.Metric",
+	upstreamProto: "govirtanametrics.Metric",
 	fields: []Field{
 		&PrimitiveField{
 			fieldName: "Name",

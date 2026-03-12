@@ -10,6 +10,9 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
+	_ "go.virtana.io/vdc/proto/collector/traces/v1"
+	_ "go.virtana.io/vdc/proto/traces/v1"
+
 	"go.opentelemetry.io/collector/pdata/internal"
 )
 
@@ -30,7 +33,7 @@ func NewTraceServiceClient(cc *grpc.ClientConn) TraceServiceClient {
 
 func (c *traceServiceClient) Export(ctx context.Context, in *internal.ExportTraceServiceRequest, opts ...grpc.CallOption) (*internal.ExportTraceServiceResponse, error) {
 	out := new(internal.ExportTraceServiceResponse)
-	err := c.cc.Invoke(ctx, "/opentelemetry.proto.collector.trace.v1.TraceService/Export", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/virtana.vdc.proto.collector.traces.v1.TraceService/Export", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +69,7 @@ func traceServiceExportHandler(srv any, ctx context.Context, dec func(any) error
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/opentelemetry.proto.collector.trace.v1.TraceService/Export",
+		FullMethod: "/virtana.vdc.proto.collector.traces.v1.TraceService/Export",
 	}
 	handler := func(ctx context.Context, req any) (any, error) {
 		return srv.(TraceServiceServer).Export(ctx, req.(*internal.ExportTraceServiceRequest))
@@ -75,7 +78,7 @@ func traceServiceExportHandler(srv any, ctx context.Context, dec func(any) error
 }
 
 var traceServiceServiceDesc = grpc.ServiceDesc{
-	ServiceName: "opentelemetry.proto.collector.trace.v1.TraceService",
+	ServiceName: "virtana.vdc.proto.collector.traces.v1.TraceService",
 	HandlerType: (*TraceServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -84,5 +87,5 @@ var traceServiceServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "opentelemetry/proto/collector/trace/v1/trace_service.proto",
+	Metadata: "virtana/vdc/proto/collector/traces/v1/traces_service.proto",
 }

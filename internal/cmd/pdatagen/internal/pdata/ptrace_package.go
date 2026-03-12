@@ -33,6 +33,8 @@ var ptrace = &Package{
 			`"google.golang.org/protobuf/proto"`,
 			`gootlpcollectortrace "go.opentelemetry.io/proto/slim/otlp/collector/trace/v1"`,
 			`gootlptrace "go.opentelemetry.io/proto/slim/otlp/trace/v1"`,
+			`govirtanacollectortrace "go.virtana.io/vdc/proto/collector/traces/v1"`,
+			`govirtanatrace "go.virtana.io/vdc/proto/traces/v1"`,
 			``,
 			`"go.opentelemetry.io/collector/pdata/internal"`,
 			`"go.opentelemetry.io/collector/pdata/internal/json"`,
@@ -64,7 +66,7 @@ var traces = &messageStruct{
 	structName:    "Traces",
 	description:   "// Traces is the top-level struct that is propagated through the traces pipeline.\n// Use NewTraces to create new instance, zero-initialized instance is not valid for use.",
 	protoName:     "ExportTraceServiceRequest",
-	upstreamProto: "gootlpcollectortrace.ExportTraceServiceRequest",
+	upstreamProto: "govirtanacollectortrace.ExportTraceServiceRequest",
 	fields: []Field{
 		&SliceField{
 			fieldName:   "ResourceSpans",
@@ -80,7 +82,7 @@ var tracesData = &messageStruct{
 	structName:    "TracesData",
 	description:   "// TracesData represents the traces data that can be stored in a persistent storage,\n// OR can be embedded by other protocols that transfer OTLP traces data but do not\n// implement the OTLP protocol.",
 	protoName:     "TracesData",
-	upstreamProto: "gootlptrace.TracesData",
+	upstreamProto: "govirtanatrace.TracesData",
 	fields: []Field{
 		&SliceField{
 			fieldName:   "ResourceSpans",
@@ -102,7 +104,7 @@ var resourceSpans = &messageStruct{
 	structName:    "ResourceSpans",
 	description:   "// ResourceSpans is a collection of spans from a Resource.",
 	protoName:     "ResourceSpans",
-	upstreamProto: "gootlptrace.ResourceSpans",
+	upstreamProto: "govirtanatrace.ResourceSpans",
 	fields: []Field{
 		&MessageField{
 			fieldName:     "Resource",
@@ -142,7 +144,7 @@ var scopeSpans = &messageStruct{
 	structName:    "ScopeSpans",
 	description:   "// ScopeSpans is a collection of spans from a LibraryInstrumentation.",
 	protoName:     "ScopeSpans",
-	upstreamProto: "gootlptrace.ScopeSpans",
+	upstreamProto: "govirtanatrace.ScopeSpans",
 	fields: []Field{
 		&MessageField{
 			fieldName:     "Scope",
@@ -174,7 +176,7 @@ var span = &messageStruct{
 	description: "// Span represents a single operation within a trace.\n" +
 		"// See Span definition in OTLP: https://github.com/open-telemetry/opentelemetry-proto/blob/main/opentelemetry/proto/trace/v1/trace.proto",
 	protoName:     "Span",
-	upstreamProto: "gootlptrace.Span",
+	upstreamProto: "govirtanatrace.Span",
 	fields: []Field{
 		&TypedField{
 			fieldName:       "TraceID",

@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package virtana.vdc.proto.collector.logs.v1;
+
+import "virtana/vdc/proto/logs/v1/logs.proto";
+
+option csharp_namespace = "Virtana.Vdc.Proto.Collector.Logs.V1";
+option java_multiple_files = true;
+option java_package = "io.virtana.vdc.proto.collector.logs.v1";
+option java_outer_classname = "LogsServiceProto";
+option go_package = "go.virtana.io/vdc/proto/collector/logs/v1";
+
+// Service that can be used to push logs between one Application
+// instrumented with OpenTelemetry and a collector, or between a collector and a
+// central collector.
+service LogsService {
+  rpc Export(ExportLogsServiceRequest) returns (ExportLogsServiceResponse) {}
+}
+
+message ExportLogsServiceRequest {
+  // An array of ResourceLogs.
+  repeated virtana.vdc.proto.logs.v1.ResourceLogs resource_logs = 1;
+}
+
+message ExportLogsServiceResponse {
+  // The details of a partially successful export request.
+  ExportLogsPartialSuccess partial_success = 1;
+}
+
+message ExportLogsPartialSuccess {
+  // The number of rejected log records.
+  int64 rejected_log_records = 1;
+
+  // A developer-facing human-readable message in English.
+  string error_message = 2;
+}

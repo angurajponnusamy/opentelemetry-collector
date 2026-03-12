@@ -22,6 +22,8 @@ var pmetricotlp = &Package{
 			`"sync"`,
 			``,
 			`"go.opentelemetry.io/collector/pdata/internal"`,
+			`"go.opentelemetry.io/collector/pdata/internal/json"`,
+			`"go.opentelemetry.io/collector/pdata/internal/proto"`,
 		},
 		testImports: []string{
 			`"strconv"`,
@@ -31,6 +33,7 @@ var pmetricotlp = &Package{
 			`"github.com/stretchr/testify/require"`,
 			`"google.golang.org/protobuf/proto"`,
 			`gootlpcollectormetrics "go.opentelemetry.io/proto/slim/otlp/collector/metrics/v1"`,
+			`govirtanacollectormetrics "go.virtana.io/vdc/proto/collector/metrics/v1"`,
 			``,
 			`"go.opentelemetry.io/collector/pdata/internal"`,
 		},
@@ -45,7 +48,7 @@ var exportMetricsResponse = &messageStruct{
 	structName:    "ExportResponse",
 	description:   "// ExportResponse represents the response for gRPC/HTTP client/server.",
 	protoName:     "ExportMetricsServiceResponse",
-	upstreamProto: "gootlpcollectormetrics.ExportMetricsServiceResponse",
+	upstreamProto: "govirtanacollectormetrics.ExportMetricsServiceResponse",
 	fields: []Field{
 		&MessageField{
 			fieldName:     "PartialSuccess",
@@ -59,7 +62,7 @@ var exportMetricsPartialSuccess = &messageStruct{
 	structName:    "ExportPartialSuccess",
 	description:   "// ExportPartialSuccess represents the details of a partially successful export request.",
 	protoName:     "ExportMetricsPartialSuccess",
-	upstreamProto: "gootlpcollectormetrics.ExportMetricsPartialSuccess",
+	upstreamProto: "govirtanacollectormetrics.ExportMetricsPartialSuccess",
 	fields: []Field{
 		&PrimitiveField{
 			fieldName: "RejectedDataPoints",

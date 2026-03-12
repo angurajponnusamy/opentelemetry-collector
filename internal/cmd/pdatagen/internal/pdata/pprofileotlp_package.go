@@ -21,6 +21,8 @@ var pprofileotlp = &Package{
 			`"sync"`,
 			``,
 			`"go.opentelemetry.io/collector/pdata/internal"`,
+			`"go.opentelemetry.io/collector/pdata/internal/json"`,
+			`"go.opentelemetry.io/collector/pdata/internal/proto"`,
 		},
 		testImports: []string{
 			`"strconv"`,

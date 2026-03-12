@@ -10,6 +10,9 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
+	_ "go.virtana.io/vdc/proto/collector/logs/v1"
+	_ "go.virtana.io/vdc/proto/logs/v1"
+
 	"go.opentelemetry.io/collector/pdata/internal"
 )
 
@@ -30,7 +33,7 @@ func NewLogsServiceClient(cc *grpc.ClientConn) LogsServiceClient {
 
 func (c *logsServiceClient) Export(ctx context.Context, in *internal.ExportLogsServiceRequest, opts ...grpc.CallOption) (*internal.ExportLogsServiceResponse, error) {
 	out := new(internal.ExportLogsServiceResponse)
-	err := c.cc.Invoke(ctx, "/opentelemetry.proto.collector.logs.v1.LogsService/Export", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/virtana.vdc.proto.collector.logs.v1.LogsService/Export", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +69,7 @@ func logsServiceExportHandler(srv any, ctx context.Context, dec func(any) error,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/opentelemetry.proto.collector.logs.v1.LogsService/Export",
+		FullMethod: "/virtana.vdc.proto.collector.logs.v1.LogsService/Export",
 	}
 	handler := func(ctx context.Context, req any) (any, error) {
 		return srv.(LogsServiceServer).Export(ctx, req.(*internal.ExportLogsServiceRequest))
@@ -75,7 +78,7 @@ func logsServiceExportHandler(srv any, ctx context.Context, dec func(any) error,
 }
 
 var logsServiceServiceDesc = grpc.ServiceDesc{
-	ServiceName: "opentelemetry.proto.collector.logs.v1.LogsService",
+	ServiceName: "virtana.vdc.proto.collector.logs.v1.LogsService",
 	HandlerType: (*LogsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -84,5 +87,5 @@ var logsServiceServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "opentelemetry/proto/collector/logs/v1/logs_service.proto",
+	Metadata: "virtana/vdc/proto/collector/logs/v1/logs_service.proto",
 }
